@@ -1,0 +1,265 @@
+<!--018 Creating Components with the CLI Nesting Components-->
+<!--<app-server></app-server>-->
+<!--<app-server></app-server>-->
+
+<!--024 Property Binding-->
+<!--TypeScript Code(Business Logic)=> Output Data =>Template(HTML)-->
+<!--Property Binding [] = " here we write only typescript code "-->
+<!--<button class="btn btn-primary"-->
+<!--[disabled]="!allowNewServer">Add Server-->
+<!--</button>-->
+<!--<app-server></app-server>-->
+<!--<app-server></app-server>-->
+
+<!--025 Property Binding vs String Interpolation-->
+<!--TypeScript Code(Business Logic)=> Output Data =>Template(HTML)-->
+<!--<button class="btn btn-primary"-->
+<!--[disabled]="!allowNewServer">Add Server-->
+<!--</button>-->
+<!-- with {{}} String Interpolation -->
+<!--<p>{{allowNewServer}}</p>-->
+<!-- with [] = "" Property Binding -->
+<!--<p [innerText]="allowNewServer"></p>-->
+<!--<app-server></app-server>-->
+<!--<app-server></app-server>-->
+
+<!--026 Event Binding-->
+<!--Template(HTML)=> React to(User)Events =>TypeScript Code(Business Logic)-->
+<!--Event Binding () = " here we write only typescript code "-->
+<!--<button class="btn btn-primary"-->
+<!--[disabled]="!allowNewServer"-->
+<!--(click)="onCreateServer()">Add Server-->
+<!--</button>-->
+<!--<p>{{serverCreationStatus}}</p>-->
+<!--<app-server></app-server>-->
+<!--<app-server></app-server>-->
+
+<!--028 Passing and Using Data with Event Binding-->
+<!--$event Object to fetch the Event Data-->
+<!--<label>Server Name</label>-->
+<!--<input type="text" class="form-control"-->
+<!--(input)="onUpdateServerName($event)">-->
+<!--<p>{{serverName}}</p>-->
+<!--<button class="btn btn-primary"-->
+<!--[disabled]="!allowNewServer"-->
+<!--(click)="onCreateServer()">Add Server-->
+<!--</button>-->
+<!--<p>{{serverCreationStatus}}</p>-->
+<!--<app-server></app-server>-->
+<!--<app-server></app-server>-->
+
+<!--029 Two-Way-Databinding-->
+<!--ngModel Directive-->
+<!--It will trigger on the input event and update the value of serverName in our component automatically(React to(User)Events). It will also update the value of the input element if we change serverName somewhere else(Output Data): like in the "servers.component.ts" file "serverName = 'Testserver'" or if we type something in the previous input element(which is empty) with the Event Binding "(input)="onUpdateServerName($event)"".-->
+<!--<label>Server Name</label>-->
+<!--<input type="text" class="form-control"-->
+<!--[(ngModel)]="serverName">-->
+<!--<p>{{serverName}}</p>-->
+<!--<button class="btn btn-primary"-->
+<!--[disabled]="!allowNewServer"-->
+<!--(click)="onCreateServer()">Add Server-->
+<!--</button>-->
+<!--<p>{{serverCreationStatus}}</p>-->
+<!--<app-server></app-server>-->
+<!--<app-server></app-server>-->
+
+<!--031 Combining all Forms of Databinding-->
+<!--Two-Way-Binding to fetch our input data-->
+<!--Event-Binding to listen to the click-->
+<!--String-Interpolation to output the data in the page-->
+<!--Property-Binding to enable the button after 2sec-->
+<!--<label>Server Name</label>-->
+<!--<input type="text" class="form-control"-->
+<!--[(ngModel)]="serverName">-->
+<!--<button class="btn btn-primary"-->
+<!--[disabled]="!allowNewServer"-->
+<!--(click)="onCreateServer()">Add Server-->
+<!--</button>-->
+<!--<p>{{serverCreationStatus}}</p>-->
+<!--<app-server></app-server>-->
+<!--<app-server></app-server>-->
+
+<!--032 Understanding Directives-->
+<!--Directives are Instructions in the DOM (e.g. Components are Directives with a Template). There are also Directives without a Template like so: (appTurnGreen custom Directive), (with a Directive Decorator definition to inform angular that this class holds a Directive and selector with the attribute style)-->
+<!--@Directive({-->
+<!--selector:'[appTurnGreen]'-->
+<!--})-->
+<!--export class TurnGreenDirective {}-->
+<!--<p appTurnGreen>Receives a green background!</p>-->
+
+<!--033 Using ngIf to Output Data Conditionally-->
+<!--Built-in Directives-->
+<!--ngIf => Structural Directive (it changes the structure of our DOM). It either adds this element or it doesn't add it.-->
+<!--*ngIf="/* Any expression returning true of false */"-->
+<!--<label>Server Name</label>-->
+<!--<input type="text" class="form-control"-->
+<!--[(ngModel)]="serverName">-->
+<!--<button class="btn btn-primary"-->
+<!--[disabled]="!allowNewServer"-->
+<!--(click)="onCreateServer()">Add Server-->
+<!--</button>-->
+<!--<p *ngIf="serverCreated">Server was created, server name is {{serverName}}</p>-->
+<!--<app-server></app-server>-->
+<!--<app-server></app-server>-->
+
+<!--034 Enhancing ngIf with an Else Condition-->
+<!--#anyNameWeWant is a Local Reference/marker-->
+<!--ng-template is a Component Directive of angular for mark places in the DOM-->
+<!--<label>Server Name</label>-->
+<!--<input type="text" class="form-control"-->
+<!--[(ngModel)]="serverName">-->
+<!--<button class="btn btn-primary"-->
+<!--[disabled]="!allowNewServer"-->
+<!--(click)="onCreateServer()">Add Server-->
+<!--</button>-->
+<!--<p *ngIf="serverCreated; else noServer">Server was created, server name is {{serverName}}</p>-->
+<!--<ng-template #noServer>-->
+<!--<p>No server was created!</p>-->
+<!--</ng-template>-->
+<!--<app-server></app-server>-->
+<!--<app-server></app-server>-->
+
+<!--037 Outputting Lists with ngFor-->
+<!--Built-in Directives-->
+<!--ngFor => Structural Directive (it changes the structure of our DOM).-->
+<!--<label>Server Name</label>-->
+<!--<input type="text" class="form-control"-->
+<!--[(ngModel)]="serverName">-->
+<!--<button class="btn btn-primary"-->
+<!--[disabled]="!allowNewServer"-->
+<!--(click)="onCreateServer()">Add Server-->
+<!--</button>-->
+<!--<p *ngIf="serverCreated">Server was created, server name is {{serverName}}</p>-->
+<!--<app-server *ngFor="let server of servers"></app-server>-->
+
+<!--112 Why do we need a Router-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-4">-->
+<!--<div class="list-group">-->
+<!--<a href="#" class="list-group-item"-->
+<!--*ngFor="let server of servers">{{server.name}}</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-xs-12 col-sm-4">-->
+<!--<app-edit-server></app-edit-server>-->
+<!--<hr>-->
+<!--<app-server></app-server>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--116 Understanding Navigation Paths-->
+<!--If we don't put the slash `/` then it doesn't work we get an error. If we do put the slash `/` it does work.-->
+<!--CORRECT WAY: The `/servers` it refers to an absolute path.-->
+<!--WRONG WAY: The `servers` it refers to a relative path.-->
+<!--With a relative path it always appends the path we specify in the router link to the end of the current path (depends to the component we're currently on).-->
+<!--CORRECT WAY: With `../servers` it means go up one level (it removes all the currently loaded segment path/route) and then add this to the path. With this is trying to load `/servers`.-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-4">-->
+<!--<div class="list-group">-->
+<!--<a href="#" class="list-group-item"-->
+<!--*ngFor="let server of servers">{{server.name}}</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-xs-12 col-sm-4">-->
+<!--<a routerLink="/servers">Reload Page</a>-->
+<!--<app-edit-server></app-edit-server>-->
+<!--<hr>-->
+<!--<app-server></app-server>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--119 Using Relative Paths in Programmatic Navigation-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-4">-->
+<!--<div class="list-group">-->
+<!--<a href="#" class="list-group-item"-->
+<!--*ngFor="let server of servers">{{server.name}}</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-xs-12 col-sm-4">-->
+<!--<button class="btn btn-primary"-->
+<!--(click)="onReload()">Reload Page-->
+<!--</button>-->
+<!--<app-edit-server></app-edit-server>-->
+<!--<hr>-->
+<!--<app-server></app-server>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--124 Passing Query Parameters and Fragments-->
+<!--Query Parameters separated by a `?` like: `?mode=editing` and we can have multiple ones separated with `&` like: `?mode=editing&`-->
+<!--We add a new property `queryParams` (it's not a new directive) of the `routerLink` directive.-->
+<!--Hash Fragment separated with `#` like: `#loading` to jump to a specific place in our app or maybe we just want to retrieve it to use it as some extra information.-->
+<!--We add a new property `fragment` (it's not a new directive) of the `routerLink` directive.
+fragment="loading" or [fragment]="'loading'"-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-4">-->
+<!--<div class="list-group">-->
+<!--<a [routerLink]="['/servers', 5, 'edit']"-->
+<!--[queryParams]="{allowEdit: '1'}"-->
+<!--fragment="loading"-->
+<!--class="list-group-item"-->
+<!--*ngFor="let server of servers">{{server.name}}</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-xs-12 col-sm-4">-->
+<!--<button class="btn btn-primary"-->
+<!--(click)="onReload()">Reload Page-->
+<!--</button>-->
+<!--<app-edit-server></app-edit-server>-->
+<!--<hr>-->
+<!--<app-server></app-server>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--126 Practicing and some Common Gotchas-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-4">-->
+<!--<div class="list-group">-->
+<!--<a [routerLink]="['/servers', server.id]"-->
+<!--[queryParams]="{allowEdit: '1'}"-->
+<!--fragment="loading"-->
+<!--class="list-group-item"-->
+<!--*ngFor="let server of servers">{{server.name}}</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-xs-12 col-sm-4">-->
+<!--<button class="btn btn-primary"-->
+<!--(click)="onReload()">Reload Page-->
+<!--</button>-->
+<!--<app-edit-server></app-edit-server>-->
+<!--<hr>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--127 Setting up Child Nested Routes-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-4">-->
+<!--<div class="list-group">-->
+<!--<a [routerLink]="['/servers', server.id]"-->
+<!--[queryParams]="{allowEdit: '1'}"-->
+<!--fragment="loading"-->
+<!--class="list-group-item"-->
+<!--*ngFor="let server of servers">{{server.name}}</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-xs-12 col-sm-4">-->
+<!--<router-outlet></router-outlet>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--128 Using Query Parameters - Practice-->
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <div class="list-group">
+      <a [routerLink]="['/servers', server.id]"
+         [queryParams]="{allowEdit: server.id === 3 ? '1' : '0'}"
+         fragment="loading"
+         class="list-group-item"
+         *ngFor="let server of servers">{{server.name}}</a>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+h3 {
+  color: darkblue;
+}
+
+.white-text {
+  color: white;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+p {
+  color: blue;
+}
+
+/*083 ngClass and ngStyle Recap*/
+.odd {
+  color: red;
+}

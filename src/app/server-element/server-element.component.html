@@ -1,0 +1,39 @@
+<!--059 Splitting Apps into Components-->
+<!--<div class="panel panel-default">-->
+<!--<div class="panel-heading">{{element.name}}</div>-->
+<!--<div class="panel-body">-->
+<!--<p>-->
+<!--<strong *ngIf="element.type === 'server'"-->
+<!--style="color: red">-->
+<!--{{element.content}}</strong>-->
+<!--<em *ngIf="element.type === 'blueprint'">-->
+<!--{{element.content}}</em>-->
+<!--</p>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--070 Projecting Content into Components with ng-content-->
+<!--ng-content => Directive(it doesn't have its own template, so it's not a component)-->
+<!--Is like a hook we can place here in our component, to mark the place (where we want to render the content) for angular, where it should add any content it finds between the opening and closing tag of the same component in the parent component (app).-->
+<!--<div class="panel panel-default">-->
+<!--<div class="panel-heading">{{element.name}}</div>-->
+<!--<div class="panel-body">-->
+<!--<ng-content></ng-content>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--072 Seeing Lifecycle Hooks in Action-->
+<!--<div class="panel panel-default">-->
+<!--<div class="panel-heading">{{name}}</div>-->
+<!--<div class="panel-body">-->
+<!--<ng-content></ng-content>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--073 Lifecycle Hooks and Template Access-->
+<div class="panel panel-default">
+  <div class="panel-heading" #heading>{{name}}</div>
+  <div class="panel-body">
+    <ng-content></ng-content>
+  </div>
+</div>

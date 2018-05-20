@@ -1,0 +1,27 @@
+<!--015 Creating a New Component-->
+<!--<p>The Server Component</p>-->
+
+<!--023 String Interpolation-->
+<!--TypeScript Code(Business Logic)=> Output Data =>Template(HTML)-->
+<!-- {{ /* Any expression which can be resolve to a string */ }} -->
+<!--<p>{{'Server'}} with ID {{serverId}} is {{serverStatus}}</p>-->
+<!--<p>{{'Server'}} with ID {{serverId}} is {{getServerStatus()}}</p>-->
+
+<!--035 Styling Elements Dynamically with ngStyle-->
+<!--Built-in Directives-->
+<!--ngStyle => Attribute Directive (Dynamically update the styles). Unlike Structural Directives, Attribute Directives don't add or remove elements. They only change the element they were placed on.-->
+<!--Property Binding(ngStyle) on this Directive(ngStyle)-->
+<!--[ngStyle]="/* Expects to get a javascript Object, with a key-value pairs */"-->
+<!--<p [ngStyle]="{'background-color': 'red'}">{{'Server'}} with ID {{serverId}} is {{getServerStatus()}}</p>-->
+<!--<p [ngStyle]="{backgroundColor: getColor()}">-->
+<!--{{'Server'}} with ID {{serverId}} is {{getServerStatus()}}-->
+<!--</p>-->
+
+<!--036 Applying CSS Classes Dynamically with ngClass-->
+<!--ngClass => Attribute Directive (Dynamically add or remove CSS classes if a certain condition is true)-->
+<!--Property Binding(ngClass) on this Directive(ngClass)-->
+<!--[ngClass]="/* Expects to get a javascript Object, with a key-value pairs. The keys are the CSS Class names and the values are the conditions determining whether this class should be attached or not. */"-->
+<p [ngStyle]="{backgroundColor: getColor()}"
+   [ngClass]="{online: serverStatus === 'online'}">
+  {{'Server'}} with ID {{serverId}} is {{getServerStatus()}}
+</p>

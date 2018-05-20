@@ -1,0 +1,11 @@
+/* 066 Understanding View Encapsulation */
+p {
+  color: blue;
+}
+
+/* 067 More on View Encapsulation */
+/* ViewEncapsulation.None => if we define any styles for this component (in the .css file of this component) they will actually get applied globally */
+/* The label is in the cockpit component */
+label {
+  color: red;
+}

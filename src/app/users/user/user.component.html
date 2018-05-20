@@ -1,0 +1,19 @@
+<!--<p>-->
+<!--user works!-->
+<!--</p>-->
+
+<!--112 Why do we need a Router-->
+<!--<p>User with ID _ID_ loaded.</p>-->
+<!--<p>User name is _NAME_</p>-->
+
+<!--121 Fetching Route Parameters-->
+<!--<p>User with ID {{user.id}} loaded.</p>-->
+<!--<p>User name is {{user.name}}</p>-->
+
+<!--122 Fetching Route Parameters Reactively-->
+<!--This will now construct a route which is `/users/10/Anna`-->
+<!--The URL was updated but the text wasn't.-->
+<p>User with ID {{user.id}} loaded.</p>
+<p>User name is {{user.name}}</p>
+<hr>
+<a [routerLink]="['/users', 10, 'Anna']">Load Anna (10)</a>
