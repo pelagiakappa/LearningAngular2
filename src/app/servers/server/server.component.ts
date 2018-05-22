@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Data, Params, Router} from '@angular/router';
 
 import {ServersService} from '../servers.service';
+import {ServerResolver} from './server-resolver.service';
 
 @Component({
   selector: 'app-server',
@@ -26,18 +27,34 @@ export class ServerComponent implements OnInit {
 
     // -->126 Practicing and some Common Gotchas<--
     // We convert the value of `id` from string to a number with `+`.
-    const id = +this.route.snapshot.params['id'];
-    this.server = this.serversService.getServer(id);
-    this.route.params
+    // const id = +this.route.snapshot.params['id'];
+    // this.server = this.serversService.getServer(id);
+    // this.route.params
+    //   .subscribe(
+    //     (params: Params) => {
+    //       this.server = this.serversService.getServer(+params['id']);
+    //     }
+    //   );
+
+    // -->139 Resolving Dynamic Data with the resolve Guard<--
+    // If we want to load the individual server from some backend, then
+    // we fetch the `id` from there and not from the `ServerComponent`.
+    this.route.data
       .subscribe(
-        (params: Params) => {
-          this.server = this.serversService.getServer(+params['id']);
+        (data: Data) => {
+          // Important: This name here `server` has to match the name
+          // we use in the `resolve` property (in the
+          // `app-routing.module`) when we assign the resolver
+          // `ServerResolver` to some property.
+          this.server = data['server'];
         }
       );
   }
 
   // -->128 Using Query Parameters - Practice<--
   onEdit() {
+    // this.router.navigate(['edit'], {relativeTo: this.route});
+
     // -->129 Configuring the Handling of Query Parameters<--
     // `queryParamsHandling` ==> 'merge' to merge our old queryParams
     // with any new we might add here ==> or 'preserve' (overrides the

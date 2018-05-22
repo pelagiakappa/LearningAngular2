@@ -26,6 +26,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {AuthService} from './auth.service';
 import {AuthGuard} from './auth-guard.service';
 import {CanDeactivateGuard} from './servers/edit-server/can-deactivate-guard.service';
+import {ErrorPageComponent} from './error-page/error-page.component';
+import {ServerResolver} from './servers/server/server-resolver.service';
 
 // -->114 Setting up and Loading Routes<--
 const appRoutes: Routes = [
@@ -44,19 +46,20 @@ const appRoutes: Routes = [
   // {path: 'servers/:id', component: ServerComponent},
   // -->127 Setting up Child Nested Routes<--
   {
+    path: 'users', component: UsersComponent, children: [
+      {path: ':id/:name', component: UserComponent}
+    ]
+  },
+  {
     path: 'servers', component: ServersComponent, children: [
       {path: ':id', component: ServerComponent},
       {path: ':id/edit', component: EditServerComponent}
     ]
   },
-  {
-    path: 'users', component: UsersComponent, children: [
-      {path: ':id/:name', component: UserComponent}
-    ]
-  },
   // -->130 Redirecting and Wildcard Routes<--
   // {path: 'something', component: PageNotFoundComponent}
   {path: 'not-found', component: PageNotFoundComponent},
+  // `redirectTo` => redirects to another path
   // {path: 'something', redirectTo: '/not-found'}
   // `**` wildcard route => catch all paths you don't know
   // IMPORTANT: We have to make sure that this very generic route is the last one in our array of routes.
@@ -81,7 +84,8 @@ const appRoutes: Routes = [
     UsersComponent,
     EditServerComponent,
     UserComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ErrorPageComponent
   ],
   imports: [  // it adds some other modules to this module
     BrowserModule,
@@ -96,7 +100,8 @@ const appRoutes: Routes = [
   // same instance of this service (unless it overrides it).
   // -->134 Protecting Routes with canActivate<--
   // -->137 Controlling Navigation with canDeactivate<--
-  providers: [AccountsService, LoggingService, ServersService, AuthService, AuthGuard, CanDeactivateGuard],
+  // -->139 Resolving Dynamic Data with the resolve Guard<--
+  providers: [AccountsService, LoggingService, ServersService, AuthService, AuthGuard, CanDeactivateGuard, ServerResolver],
   bootstrap: [AppComponent] // the root component of our app
 })
 export class AppModule { // it bundles our code
