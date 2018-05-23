@@ -20,7 +20,7 @@ import {UsersComponent} from './users/users.component';
 import {EditServerComponent} from './servers/edit-server/edit-server.component';
 import {ServerComponent} from './servers/server/server.component';
 import {ServersService} from './servers/servers.service';
-import {UserComponent} from './users/user/user.component';
+// import {UserComponent} from './users/user/user.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AuthService} from './auth.service';
@@ -28,6 +28,8 @@ import {AuthGuard} from './auth-guard.service';
 import {CanDeactivateGuard} from './servers/edit-server/can-deactivate-guard.service';
 import {ErrorPageComponent} from './error-page/error-page.component';
 import {ServerResolver} from './servers/server/server-resolver.service';
+import {UserComponent} from './user/user.component';
+import {UsersService} from './users.service';
 
 // -->114 Setting up and Loading Routes<--
 const appRoutes: Routes = [
@@ -93,6 +95,7 @@ const appRoutes: Routes = [
     // -->114 Setting up and Loading Routes<--
     // RouterModule.forRoot(appRoutes)
     // -->132 Outsourcing the Route Configuration<--
+    // -->157 Module Introduction<--
     AppRoutingModule
   ],
   // -->101 Injecting Services into Services<--
@@ -101,7 +104,8 @@ const appRoutes: Routes = [
   // -->134 Protecting Routes with canActivate<--
   // -->137 Controlling Navigation with canDeactivate<--
   // -->139 Resolving Dynamic Data with the resolve Guard<--
-  providers: [AccountsService, LoggingService, ServersService, AuthService, AuthGuard, CanDeactivateGuard, ServerResolver],
+  // -->163 Using Subjects to Pass AND Listen to Data<--
+  providers: [AccountsService, LoggingService, ServersService, AuthService, AuthGuard, CanDeactivateGuard, ServerResolver, UsersService],
   bootstrap: [AppComponent] // the root component of our app
 })
 export class AppModule { // it bundles our code

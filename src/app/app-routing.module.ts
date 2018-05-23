@@ -6,13 +6,14 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {EditServerComponent} from './servers/edit-server/edit-server.component';
 import {ServerComponent} from './servers/server/server.component';
 import {ServersComponent} from './servers/servers.component';
-import {UserComponent} from './users/user/user.component';
+// import {UserComponent} from './users/user/user.component';
 import {UsersComponent} from './users/users.component';
 import {HomeComponent} from './home/home.component';
 import {AuthGuard} from './auth-guard.service';
 import {CanDeactivateGuard} from './servers/edit-server/can-deactivate-guard.service';
 import {ErrorPageComponent} from './error-page/error-page.component';
 import {ServerResolver} from './servers/server/server-resolver.service';
+import {UserComponent} from './user/user.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -60,9 +61,15 @@ const appRoutes: Routes = [
   {path: '**', redirectTo: '/not-found'}
 ];
 
+// -->157 Module Introduction<--
+const routes: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'user/:id', component: UserComponent}
+];
+
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes)
+    // RouterModule.forRoot(appRoutes)
     // -->140 Understanding Location Strategies<--
     // The routes works fine here on our local setup, but if we
     // hosting this on a real server (somewhere in the web) the routes
@@ -74,6 +81,9 @@ const appRoutes: Routes = [
     // the `index.html` file. In other cases where we can't return it
     // (for support of very old browsers maybe) we use:
     // RouterModule.forRoot(appRoutes, {useHash: true})
+
+    // -->157 Module Introduction<--
+    RouterModule.forRoot(routes)
   ],
   // `exports` simple tells angular => from this module
   // `AppRoutingModule` (if I were to add this module

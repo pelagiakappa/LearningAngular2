@@ -739,23 +739,61 @@
 <!--117 Styling Active Router Links-->
 <!--We use a specific directive `routerLinkActive`, and we set it equal to the `active` bootstrap class (or whatever `myactiveclass` we want to use).-->
 <!--We always have this `http://localhost:4200/empty` path before the `/`(for Home) and `/servers` and `/users` paths. So the empty path segment is part of all paths. Still we don't want to have Home being mark as active all the time. To fix this we can add some configuration to this routerLinkActive directive `routerLinkActiveOptions`.-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+<!--<ul class="nav nav-tabs">-->
+<!--<li role="presentation" routerLinkActive="active"-->
+<!--[routerLinkActiveOptions]="{exact: true}">-->
+<!--<a routerLink="/">Home</a>-->
+<!--</li>-->
+<!--<li role="presentation" routerLinkActive="active">-->
+<!--<a routerLink="servers">Servers</a>-->
+<!--</li>-->
+<!--<li role="presentation" routerLinkActive="active">-->
+<!--<a [routerLink]="['users']">Users</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+<!--<router-outlet></router-outlet>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--157 Module Introduction-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+<!--<a routerLink="/">Home</a>-->
+<!--<a [routerLink]="['user', 1]">User 1</a>-->
+<!--<a [routerLink]="['user', 2]">User 2</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<hr>-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+<!--<router-outlet></router-outlet>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--163 Using Subjects to Pass AND Listen to Data-->
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <ul class="nav nav-tabs">
-        <li role="presentation" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}">
-          <a routerLink="/">Home</a>
-        </li>
-        <li role="presentation" routerLinkActive="active">
-          <a routerLink="servers">Servers</a>
-        </li>
-        <li role="presentation" routerLinkActive="active">
-          <a [routerLink]="['users']">Users</a>
-        </li>
-      </ul>
+      <a routerLink="/">Home</a>
+      <a [routerLink]="['user', 1]">
+        User 1 {{user1Activated ? '(activated)' : ''}}
+      </a>
+      <a [routerLink]="['user', 2]">
+        User 2 {{user2Activated ? '(activated)' : ''}}
+      </a>
     </div>
   </div>
+  <hr>
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <router-outlet></router-outlet>

@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+
 import {AccountsService} from './accounts.service';
+import {UsersService} from './users.service';
 
 // Decorator is a typescript Feature
 // Component Decorator is a Directive Decorator
@@ -66,8 +68,14 @@ export class AppComponent implements OnInit {
   // -->098 Creating a Data Service<--
   accounts: { name: string, status: string }[] = [];
 
+  // -->163 Using Subjects to Pass AND Listen to Data<--
+  user1Activated = false;
+  user2Activated = false;
+
   // -->098 Creating a Data Service<--
-  constructor(private accountsService: AccountsService) {
+  // -->163 Using Subjects to Pass AND Listen to Data<--
+  constructor(private accountsService: AccountsService,
+              private usersService: UsersService) {
   }
 
   // -->098 Creating a Data Service<--
@@ -76,6 +84,19 @@ export class AppComponent implements OnInit {
     // just getting access to the exact same array as stored in the
     // service.
     this.accounts = this.accountsService.accounts;
+
+    // -->163 Using Subjects to Pass AND Listen to Data<--
+    // Here, we use the `Observable` part by subscribe to it.
+    this.usersService.userActivated.subscribe(
+      (id: number) => {
+        if (id === 1) {
+          this.user1Activated = true;
+        } else if (id === 2) {
+          this.user2Activated = true;
+        }
+      }
+    );
+
   }
 
   // -->038 Getting the Index when using ngFor<--
