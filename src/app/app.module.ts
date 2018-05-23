@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
@@ -30,6 +31,7 @@ import {ErrorPageComponent} from './error-page/error-page.component';
 import {ServerResolver} from './servers/server/server-resolver.service';
 import {UserComponent} from './user/user.component';
 import {UsersService} from './users.service';
+import {ServerService} from './server.service';
 
 // -->114 Setting up and Loading Routes<--
 const appRoutes: Routes = [
@@ -96,7 +98,9 @@ const appRoutes: Routes = [
     // RouterModule.forRoot(appRoutes)
     // -->132 Outsourcing the Route Configuration<--
     // -->157 Module Introduction<--
-    AppRoutingModule
+    AppRoutingModule,
+    // -->233 Sending Requests Example POST Request<--
+    HttpModule
   ],
   // -->101 Injecting Services into Services<--
   // We're make sure that everything in our application receives the
@@ -105,7 +109,18 @@ const appRoutes: Routes = [
   // -->137 Controlling Navigation with canDeactivate<--
   // -->139 Resolving Dynamic Data with the resolve Guard<--
   // -->163 Using Subjects to Pass AND Listen to Data<--
-  providers: [AccountsService, LoggingService, ServersService, AuthService, AuthGuard, CanDeactivateGuard, ServerResolver, UsersService],
+  // -->233 Sending Requests Example POST Request<--
+  providers: [
+    AccountsService,
+    LoggingService,
+    ServersService,
+    AuthService,
+    AuthGuard,
+    CanDeactivateGuard,
+    ServerResolver,
+    UsersService,
+    ServerService
+  ],
   bootstrap: [AppComponent] // the root component of our app
 })
 export class AppModule { // it bundles our code

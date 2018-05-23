@@ -781,22 +781,114 @@
 <!--</div>-->
 
 <!--163 Using Subjects to Pass AND Listen to Data-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+<!--<a routerLink="/">Home</a>-->
+<!--<a [routerLink]="['user', 1]">-->
+<!--User 1 {{user1Activated ? '(activated)' : ''}}-->
+<!--</a>-->
+<!--<a [routerLink]="['user', 2]">-->
+<!--User 2 {{user2Activated ? '(activated)' : ''}}-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<hr>-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+<!--<router-outlet></router-outlet>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--232 Example App  Backend Setup-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+<!--<input type="text" #serverName>-->
+<!--<button class="btn btn-primary"-->
+<!--(click)="onAddServer(serverName.value)">Add Server-->
+<!--</button>-->
+<!--<hr>-->
+<!--<ul class="list-group" *ngFor="let server of servers">-->
+<!--<li class="list-group-item">-->
+<!--{{server.name}} (ID: {{server.id}})-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--233 Sending Requests Example POST Request-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+<!--<input type="text" #serverName>-->
+<!--<button class="btn btn-primary"-->
+<!--(click)="onAddServer(serverName.value)">Add Server-->
+<!--</button>-->
+<!--<br><br>-->
+<!--<button class="btn btn-primary"-->
+<!--(click)="onSave()">Save Servers-->
+<!--</button>-->
+<!--<hr>-->
+<!--<ul class="list-group" *ngFor="let server of servers">-->
+<!--<li class="list-group-item">-->
+<!--{{server.name}} (ID: {{server.id}})-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--235 Sending GET Requests-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+<!--<input type="text" #serverName>-->
+<!--<button class="btn btn-primary"-->
+<!--(click)="onAddServer(serverName.value)">Add Server-->
+<!--</button>-->
+<!--<br><br>-->
+<!--<button class="btn btn-primary"-->
+<!--(click)="onSave()">Save Servers-->
+<!--</button>-->
+<!--<button class="btn btn-primary"-->
+<!--(click)="onGet()">Get Servers-->
+<!--</button>-->
+<!--<hr>-->
+<!--<ul class="list-group" *ngFor="let server of servers">-->
+<!--<li class="list-group-item">-->
+<!--{{server.name}} (ID: {{server.id}})-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--240 Using the async Pipe with Http Requests-->
+<!--With the async Pipe we don't have to subscribe.-->
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <a routerLink="/">Home</a>
-      <a [routerLink]="['user', 1]">
-        User 1 {{user1Activated ? '(activated)' : ''}}
-      </a>
-      <a [routerLink]="['user', 2]">
-        User 2 {{user2Activated ? '(activated)' : ''}}
-      </a>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <router-outlet></router-outlet>
+      <h1>{{appName | async}}</h1>
+      <input type="text" #serverName>
+      <button class="btn btn-primary"
+              (click)="onAddServer(serverName.value)">Add Server
+      </button>
+      <br><br>
+      <button class="btn btn-primary"
+              (click)="onSave()">Save Servers
+      </button>
+      <button class="btn btn-primary"
+              (click)="onGet()">Get Servers
+      </button>
+      <hr>
+      <ul class="list-group" *ngFor="let server of servers">
+        <li class="list-group-item">
+          {{server.name}} (ID: {{server.id}})
+        </li>
+      </ul>
     </div>
   </div>
 </div>
